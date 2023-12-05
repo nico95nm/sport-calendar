@@ -45,7 +45,7 @@ export default async function RootLayout({ children }: Props) {
 
         {/* Table for user can see after filling the form for Date, Day, Event, Teams */}
         {children}
-
+        {/* Categorizing sports */}
         <div className="forms">
           <h2>Sports</h2>
           <ul>
