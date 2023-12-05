@@ -1,0 +1,25 @@
+* {
+  margin: 0px;
+}
+.heading {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 50px;
+}
+/* .forms {
+  text-align: right;
+}
+.forms {
+  display: flex;
+  justify-content: left;
+} */
+.inputField,
+.for {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: flex;
+  justify-content: space-around;
+}
+h2 {
+  text-decoration-line: underline;
+}
