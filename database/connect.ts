@@ -8,6 +8,7 @@ setEnvironmentVariables();
 declare module globalThis {
   let postgresSqlClient: Sql;
 }
+
 // Connect only once to the database
 // https://github.com/vercel/next.js/issues/7811#issuecomment-715259370
 function connectOneTimeToDatabase() {
@@ -20,6 +21,7 @@ function connectOneTimeToDatabase() {
       },
     });
   }
+
   // Workaround to force Next.js Dynamic Rendering:
   //
   // Wrap sql`` tagged template function to call `headers()` from
@@ -40,5 +42,6 @@ function connectOneTimeToDatabase() {
     return globalThis.postgresSqlClient(...sqlParameters);
   }) as typeof globalThis.postgresSqlClient;
 }
+
 // Connect to PostgreSQL
 export const sql = connectOneTimeToDatabase();

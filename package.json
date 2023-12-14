@@ -11,6 +11,7 @@
     "migrate": "dotenv -- ley --require tsm"
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
     "dotenv-cli": "^7.3.0",
     "dotenv-safe": "^8.2.0",
     "ley": "^0.8.1",

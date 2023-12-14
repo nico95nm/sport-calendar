@@ -2,25 +2,25 @@ import { Event } from '@/migrations/1701860652-createTableEvents';
 import { cache } from 'react';
 import { sql } from './connect';
 
-export const getEvents = cache(
+export const saveData = cache(
   async (
-    event_id: number,
     sport_id: number,
-    team_id: number,
-    sport_name: string,
-    team_name: string,
+    home_team_id: number,
+    guest_team_id: number,
+    home_team_name: string,
+    guest_team_name: string,
     event_date: Date | null,
     weekday: string,
   ) => {
     const [events] = await sql<Event[]>`
     INSERT INTO events
-      (event_id, sport_id, team_id)
+      (sport_id, home_team_id, guest_team_id)
     VALUES
-    (${event_id}, ${sport_id}, ${team_id})
+    (${sport_id}, ${home_team_id}, ${guest_team_id})
     RETURNING
-    event_id,
     sport_id,
-    team_id
+    home_team_id,
+    guest_team_name
     `;
     return events;
   },
@@ -39,7 +39,7 @@ export const getEventById = cache(async (event_id: number) => {
 export const createEvent = cache(async () => {
   const events = await sql<Event[]>`
     INSERT INTO events
-    (sport_name team_name, event_date, weekday)
+    (sport_name, home_team_name, guest_team_name, event_date, weekday)
     VALUES
       events
   `;
@@ -48,18 +48,19 @@ export const createEvent = cache(async () => {
 export const updateEventById = cache(
   async (
     sport_name: string,
-    team_name: string,
+    home_team_name: string,
+    guest_team_name: string,
     event_date: Date,
     weekday: string,
   ) => {
-    const [event] = await sql<Event[]>`
+    const [events] = await sql<Event[]>`
     INSERT INTO events
-      (sport_name team_name, event_date, weekday)
+      (sport_name home_team_name, guest_team_name, event_date, weekday)
     VALUES
-    (${sport_name}, ${team_name}, ${event_date}, ${weekday})
+    (${sport_name}, ${home_team_name}, ${guest_team_name} , ${event_date}, ${weekday})
     RETURNING *
     `;
-    return event;
+    return events;
   },
 );
 export const deleteEventById = cache(async (event_id: number) => {
