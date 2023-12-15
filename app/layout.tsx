@@ -1,8 +1,8 @@
 import './globals.css';
-import { saveData } from '@/database/events';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
+import { date, number } from 'zod';
 import EventsForm from './components/event/EventForm';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -25,10 +25,16 @@ export default async function RootLayout({ children }: Props) {
           <button>Sort</button>
         </div>
 
-        {/* Table for user can see after filling the form for Date, Day, Event, Teams */}
-        {/* Categorizing sports */}
+        {/* Table for user can see after filling the form for Sport_name, Home_team_name, Guest_team_name, Event_date, Weekday */}
         <div>
-          <EventsForm events={[]} />
+          <EventsForm
+            events={[]}
+            sport_name={''}
+            home_team_name={''}
+            guest_team_name={''}
+            event_date={''}
+            weekday={''}
+          />
         </div>
         {children}
       </body>

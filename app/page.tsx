@@ -1,4 +1,3 @@
-import { saveData } from '@/database/events';
 import Image from 'next/image';
 import Calendar from 'react-calendar';
 import EventsForm from './components/event/EventForm';

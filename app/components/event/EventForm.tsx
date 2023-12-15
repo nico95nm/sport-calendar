@@ -4,6 +4,7 @@ import { Event } from '@/migrations/1701860652-createTableEvents';
 import { useRouter } from 'next/navigation';
 import { use, useState } from 'react';
 
+//DDefine type for Props
 type Props = {
   events: Event[];
   sport_name: string;
@@ -12,7 +13,8 @@ type Props = {
   event_date: Date;
   weekday: string;
 };
-//Create input form
+
+// Create variables for input fields
 export default function EventsForm({ events }: Props) {
   const [eventList, setEventList] = useState(events);
   const [sportNameInput, setSportNameInput] = useState('');
@@ -22,7 +24,7 @@ export default function EventsForm({ events }: Props) {
   const [weekdayInput, setWeekdayInput] = useState('');
 
   const router = useRouter();
-
+  // Create function that will fetch from API
   async function createEvent() {
     const response = await fetch('/api/events', {
       method: 'POST',
@@ -30,10 +32,11 @@ export default function EventsForm({ events }: Props) {
         sport_name: sportNameInput,
         home_team_name: homeTeamNameInput,
         guest_team_name: guestTeamNameInput,
-        event_date: eventDateInput,
+        event_date: eventDateInput.toString(),
         weekday: eventDateInput,
       }),
     });
+    // Refresh the page after submitting the event details
     router.refresh();
 
     const data = await response.json();
@@ -48,15 +51,20 @@ export default function EventsForm({ events }: Props) {
       <input
         type="text"
         value={weekdayInput}
-        onSubmit={(event) => event.preventDefault()}
         onChange={(event) => setWeekdayInput(event.currentTarget.value)}
+      />
+      <br />
+      <label>Sport name: </label>
+      <input
+        type="text"
+        value={sportNameInput}
+        onChange={(event) => setSportNameInput(event.currentTarget.value)}
       />
       <br />
       <label>Event date: </label>
       <input
-        type="text"
+        type="date"
         value={eventDateInput}
-        onSubmit={(event) => event.preventDefault()}
         onChange={(event) => setEventDateInput(event.currentTarget.value)}
       />
       <br />
@@ -68,6 +76,7 @@ export default function EventsForm({ events }: Props) {
       />
       vs
       <input
+        value={guestTeamNameInput}
         onChange={(event) => setGuestTeamNameInput(event.currentTarget.value)}
         placeholder="Write here:"
       />
@@ -85,6 +94,7 @@ export default function EventsForm({ events }: Props) {
       </tr>
       <div>
         <tr>
+          <td>{sportNameInput}</td>
           <td>{weekdayInput} </td>
           <td>{eventDateInput} </td>
           <td>{homeTeamNameInput} </td>
