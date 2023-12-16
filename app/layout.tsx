@@ -17,7 +17,7 @@ type Props = {
 };
 export default async function RootLayout({ children }: Props) {
   return (
-    <html lang="en">
+    <main>
       <body>
         <h1 className="heading">Sport Calendar</h1>
         <div className="container">
@@ -38,6 +38,6 @@ export default async function RootLayout({ children }: Props) {
         </div>
         {children}
       </body>
-    </html>
+    </main>
   );
 }
