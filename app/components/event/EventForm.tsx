@@ -11,7 +11,6 @@ type Props = {
   home_team_name: string;
   guest_team_name: string;
   event_date: Date;
-  weekday: string;
 };
 
 // Create variables for input fields
@@ -21,8 +20,6 @@ export default function EventsForm({ events }: Props) {
   const [homeTeamNameInput, setHomeTeamNameInput] = useState('');
   const [guestTeamNameInput, setGuestTeamNameInput] = useState('');
   const [eventDateInput, setEventDateInput] = useState('');
-  const [weekdayInput, setWeekdayInput] = useState('');
-
   const router = useRouter();
   // Create function that will fetch from API
   async function createEvent() {
@@ -33,7 +30,6 @@ export default function EventsForm({ events }: Props) {
         home_team_name: homeTeamNameInput,
         guest_team_name: guestTeamNameInput,
         event_date: eventDateInput.toString(),
-        weekday: eventDateInput,
       }),
     });
     // Refresh the page after submitting the event details
@@ -48,11 +44,6 @@ export default function EventsForm({ events }: Props) {
   return (
     <div className="inputDiv">
       <label>Weekday: </label>
-      <input
-        type="text"
-        value={weekdayInput}
-        onChange={(event) => setWeekdayInput(event.currentTarget.value)}
-      />
       <br />
       <label>Sport name: </label>
       <input
@@ -90,12 +81,11 @@ export default function EventsForm({ events }: Props) {
         <td>Event Date </td>
         <td>Home Team </td>
         <span>vs</span>
-        <td> Guest team </td>
+        <td>Guest team </td>
       </tr>
       <div>
         <tr>
           <td>{sportNameInput}</td>
-          <td>{weekdayInput} </td>
           <td>{eventDateInput} </td>
           <td>{homeTeamNameInput} </td>
           <span></span>

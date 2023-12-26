@@ -3,22 +3,16 @@ import { Sql } from 'postgres';
 // Create Event type
 export type Event = {
   event_id: number;
-  sport_name: string;
-  home_team_name: string;
-  guest_team_name: string;
   event_date: Date | null;
-  weekday: string;
+  time: Date;
 };
 // Create migrate function UP
 export async function up(sql: Sql) {
   await sql`
   CREATE TABLE events (
   event_id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  sport_name varchar(225),
-  home_team_name varchar(225),
-  guest_team_name varchar(225),
   event_date date DEFAULT NULL,
-  weekday varchar(20)
+  time TIME DEFAULT NULL
   )
 `;
 }
