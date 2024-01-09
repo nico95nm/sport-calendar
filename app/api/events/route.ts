@@ -8,13 +8,7 @@ export async function POST(
   request: NextRequest,
 ): Promise<NextResponse<EventResponseBodyPost>> {
   const body = await request.json();
-  const newEvent = await createEvent(
-    body.data.sport_name,
-    body.data.home_team_name,
-    body.data.guest_team_name,
-    body.data.event_date,
-    body.data.weekday,
-  );
+  const newEvent = await createEvent(body.data.event_date);
   console.log({ body });
   return NextResponse.json({ event: newEvent });
 }

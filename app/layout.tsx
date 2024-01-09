@@ -2,7 +2,6 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
-import { date, number } from 'zod';
 import EventsForm from './components/event/EventForm';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -33,7 +32,6 @@ export default async function RootLayout({ children }: Props) {
             home_team_name={''}
             guest_team_name={''}
             event_date={''}
-            weekday={''}
           />
         </div>
         {children}

@@ -18,7 +18,8 @@ export async function up(sql: Sql) {
     home_team_name varchar(200),
     guest_team_name varchar(200),
     stadium_name varchar(100),
-    country varchar(50)
+    country varchar(50),
+    event_id integer UNIQUE REFERENCES events (id)
   )
 `;
 }
