@@ -29,7 +29,7 @@ export const createTeam = cache(
         )
   VALUES
   (
-  ${sport_name}
+  ${sport_name},
   ${home_team_name},
   ${guest_team_name},
   ${stadium_name},

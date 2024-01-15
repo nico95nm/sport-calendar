@@ -35,7 +35,8 @@ export async function up(sql: Sql) {
       ${team.guest_team_name},
       ${team.stadium_name},
       ${team.sport_name},
-      ${team.country})
+      ${team.country}
+      )
       `;
   }
 }
